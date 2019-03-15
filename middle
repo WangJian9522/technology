@@ -1,0 +1,10 @@
+class RandomUserAgent(UserAgentMiddleware):
+    def process_request(self, request, spider):
+        ua = random.choice(USER_AGENT_LIST)
+        return request.headers.setdefault（'User-Agent'，ua）
+#  
+class RandomProxy（object）： 
+    def process_request(self,request, spider):
+        proxy = yield ProxiesPool.throw_a_ip
+        request.meta['proxy'] = proxy
+        return request.meta['proxy']
